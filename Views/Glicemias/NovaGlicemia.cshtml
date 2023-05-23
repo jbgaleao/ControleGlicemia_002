@@ -7,50 +7,97 @@
 <h4 class="alert alert-success">Cadastrar Nova Glicemia</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md">
         <form asp-action="NovaGlicemia">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group p-2">
-                <label asp-for="GlicemiaMedida" class="control-label col-form-label-sm"></label>
-                <input asp-for="GlicemiaMedida" class="form-control form-control-sm" />
-                <span asp-validation-for="GlicemiaMedida" class="text-danger"></span>
+
+
+
+            <div class="card">
+                <div class="card-header">Glicemia Medida</div>
+                <div class="card-body row">
+                    <div class="col-md-6">
+                        <div class="form-group p-1">
+                            <label asp-for="GlicemiaMedida" class="control-label col-form-label-sm"></label>
+                            <input asp-for="GlicemiaMedida" class="form-control form-control-sm" />
+                            <span asp-validation-for="GlicemiaMedida" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group p-2">
-                <label asp-for="DataMedicao" class="control-label col-form-label-sm"></label>
-                <input asp-for="DataMedicao" class="form-control form-control-sm" />
-                <span asp-validation-for="DataMedicao" class="text-danger"></span>
+
+            <br />
+
+            <div class="card">
+                <div class="card-header">Horários</div>
+                <div class="card-body row">
+                    <div class="col-md">
+                        <div class="form-group p-1">
+                            <label asp-for="DataMedicao" class="control-label col-form-label-sm"></label>
+                            <input asp-for="DataMedicao" class="form-control form-control-sm" />
+                            <span asp-validation-for="DataMedicao" class="text-danger"></span>
+                        </div>
+                        <div class="form-group p-1">
+                            <label asp-for="HoraMedicao" class="control-label col-form-label-sm"></label>
+                            <input asp-for="HoraMedicao" class="form-control form-control-sm" />
+                            <span asp-validation-for="HoraMedicao" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="col-md">
+                        <div class="form-group p-1">
+                            <label asp-for="DataAplicacao" class="control-label col-form-label-sm"></label>
+                            <input asp-for="DataAplicacao" class="form-control form-control-sm" />
+                            <span asp-validation-for="DataAplicacao" class="text-danger"></span>
+                        </div>
+                        <div class="form-group p-1">
+                            <label asp-for="HoraAplicacao" class="control-label col-form-label-sm"></label>
+                            <input asp-for="HoraAplicacao" class="form-control form-control-sm" />
+                            <span asp-validation-for="HoraAplicacao" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group p-2">
-                <label asp-for="HoraMedicao" class="control-label col-form-label-sm"></label>
-                <input asp-for="HoraMedicao" class="form-control form-control-sm" />
-                <span asp-validation-for="HoraMedicao" class="text-danger"></span>
+
+            <br />
+
+            <div class="card">
+                <div class="card-header">Aplicações de Insulina</div>
+                <div class="card-body row">
+                    <div class="col-md">
+                        <div class="form-group p-1">
+                            <label asp-for="DoseRegular" class="control-label col-form-label-sm"></label>
+                            <input asp-for="DoseRegular" class="form-control form-control-sm" />
+                            <span asp-validation-for="DoseRegular" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md">
+                        <div class="form-group p-1">
+                            <label asp-for="DoseAjuste" class="control-label col-form-label-sm"></label>
+                            <input asp-for="DoseAjuste" class="form-control form-control-sm" />
+                            <span asp-validation-for="DoseAjuste" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group p-2">
-                <label asp-for="DataAplicacao" class="control-label col-form-label-sm"></label>
-                <input asp-for="DataAplicacao" class="form-control form-control-sm" />
-                <span asp-validation-for="DataAplicacao" class="text-danger"></span>
+
+            <br />
+
+            <div class="card">
+                <div class="card-header">Observações</div>
+                <div class="card-body">
+                    <div class="form-group p-1">
+                        <label asp-for="Observacao" class="control-label col-form-label-sm"></label>
+                        <input asp-for="Observacao" class="form-control form-control-sm" />
+                        <span asp-validation-for="Observacao" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group p-2">
-                <label asp-for="HoraAplicacao" class="control-label col-form-label-sm"></label>
-                <input asp-for="HoraAplicacao" class="form-control form-control-sm" />
-                <span asp-validation-for="HoraAplicacao" class="text-danger"></span>
-            </div>
-            <div class="form-group p-2">
-                <label asp-for="DoseRegular" class="control-label col-form-label-sm"></label>
-                <input asp-for="DoseRegular" class="form-control form-control-sm" />
-                <span asp-validation-for="DoseRegular" class="text-danger"></span>
-            </div>
-            <div class="form-group p-2">
-                <label asp-for="DoseAjuste" class="control-label col-form-label-sm"></label>
-                <input asp-for="DoseAjuste" class="form-control form-control-sm" />
-                <span asp-validation-for="DoseAjuste" class="text-danger"></span>
-            </div>
-            <div class="form-group p-2">
-                <label asp-for="Observacao" class="control-label col-form-label-sm"></label>
-                <input asp-for="Observacao" class="form-control form-control-sm" />
-                <span asp-validation-for="Observacao" class="text-danger"></span>
-            </div>
-            <div class="form-group p-2">
+
+            <br />
+
+            <div class="form-group p-1">
                 <input type="submit" value="Salvar" class="btn btn-success btn-sm" />&emsp;
                 <a asp-action="Index" class="btn btn-link btn-sm">Voltar</a>
             </div>
