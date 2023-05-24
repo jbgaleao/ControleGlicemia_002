@@ -26,7 +26,7 @@ namespace ControleGlicemia_002.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> NovaGlicemia(Glicemia glicemia)
+        public async Task<IActionResult> NovaGlicemia(GlicemiaViewModel glicemia)
         {
             if (ModelState.IsValid)
             {
@@ -34,7 +34,14 @@ namespace ControleGlicemia_002.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(NovaGlicemia));
             }
-            return View(glicemia);
+            else
+            {
+                ViewBag.MessageFormularioErro = "Foram encontrados erros no formulário. Favor verificar os campos preenchidos.";
+                viewModel.EhErro = "Sim";
+                viewModel.MensagemRetorno = "";
+                return View(glicemia);
+            }
+
         }
 
     }

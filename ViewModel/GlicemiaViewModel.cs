@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace ControleGlicemia_002.Models
+namespace ControleGlicemia_002.ViewModel
 {
     public class GlicemiaViewModel
     {
