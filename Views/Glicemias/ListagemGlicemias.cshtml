@@ -6,55 +6,96 @@
 
 <h3 class="jumbotron">Listagem de Glicemias Cadastradas</h3>
 
+@using (Html.BeginForm())
+{
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Aplicar Filtros...
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
 
-<div class="accordion" id="accordionExample">
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="headingOne">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                Aplicar Filtros...
-            </button>
-        </h2>
-        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
+                    <div class="container col-md-12">
+                        <div class="row">
 
-                <div class="container col-md-12">
+                            @*  GLICEMIA MEDIDA *@
+                            <div class="col-md-1">
+                                <label class="control-label col-form-label-sm fw-bold">&emsp;</label>
+                                <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                    <option selected value="0"></option>
+                                    <option value="1">&lt</option>
+                                    <option value="2">&le;</option>
+                                    <option value="3">=</option>
+                                    <option value="4">&ne;</option>
+                                    <option value="5">&gt;</option>
+                                    <option value="6">&ge;</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="control-label col-form-label-sm fw-bold">Glicemia Medida</label>
+                                <input class="form-control form-control-sm" type="number" min="40" max="500" />
+                            </div>
 
+                            @*  DATA DE MEDIÇÃO *@
+                            <div class="col-md-1">
+                                <label class="control-label col-form-label-sm fw-bold">&emsp;</label>
+                                <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                    <option selected value="0"></option>
+                                    <option value="1">&lt</option>
+                                    <option value="2">&le;</option>
+                                    <option value="3">=</option>
+                                    <option value="4">&ne;</option>
+                                    <option value="5">&gt;</option>
+                                    <option value="6">&ge;</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="control-label col-form-label-sm fw-bold">Data da Medição</label>
+                                <input class="form-control form-control-sm" type="date" min="40" max="500" />
+                            </div>
 
-                    @*  GLICEMIA MEDIDA *@
-                    <div class="row">
-                        <div class="col-md-1">
-                            <label class="control-label col-form-label-sm fw-bold">Condição</label>
-                            <input class="form-control form-control-sm" type="number" min="40" max="500" />
+                            @*  DATA DE APLICAÇÃO *@
+                            <div class="col-md-1">
+                                <label class="control-label col-form-label-sm fw-bold">&emsp;</label>
+                                <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                    <option selected value="0"></option>
+                                    <option value="1">&lt</option>
+                                    <option value="2">&le;</option>
+                                    <option value="3">=</option>
+                                    <option value="4">&ne;</option>
+                                    <option value="5">&gt;</option>
+                                    <option value="6">&ge;</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="control-label col-form-label-sm fw-bold">Data da Aplicação</label>
+                                <input class="form-control form-control-sm" type="date" min="40" max="500" />
+                            </div>
+
+                            @*  BOTÃO APLICAR FILTRO    *@
+                            <div class="col-md-1">
+                            </div>
+                            <div class="col-md-2">
+                                <a class="btn btn-primary btn-sm" href="/Glicemias/CadastraGlicemia" style="padding-top: 4px; margin-top: 30px;">Aplicar Filtro...</a>
+                            </div>
                         </div>
-                        <div class="col-md-2">  
-                            <label class="control-label col-form-label-sm fw-bold">Glicemia Medida</label>
-                            <input class="form-control form-control-sm" type="number" min="40" max="500" />
-                        </div>
+
+                        <br>
                     </div>
-                    <br>
-                    @*  DATA DE MEDIÇÃO *@
-                    <div class="row">
-                        <div class="col-md-1">
-                            <label class="control-label col-form-label-sm fw-bold">Condição</label>
-                            <input class="form-control form-control-sm" type="number" min="40" max="500" />
-                        </div>
-                        <div class="col-md-2">
-                            <label class="control-label col-form-label-sm fw-bold">Glicemia Medida</label>
-                            <input class="form-control form-control-sm" type="number" min="40" max="500" />
-                        </div>
-                    </div>
-
-
                 </div>
             </div>
         </div>
     </div>
-</div>
+}
+
 
 
 <br />
 <div class="form-group p-1">
-    <a class="btn btn-primary btn-sm" asp-action="CadastraGlicemia">CadastraGlicemia</a>
+    <a class="btn btn-primary btn-sm" asp-action="CadastraGlicemia">Cadastra Glicemia</a>
 </div>
 <hr />
 
