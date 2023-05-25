@@ -1,5 +1,8 @@
-﻿using ControleGlicemia_002.Context;
+﻿using AutoMapper;
+
+using ControleGlicemia_002.Context;
 using ControleGlicemia_002.Models;
+using ControleGlicemia_002.ViewModel;
 
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,40 +11,52 @@ namespace ControleGlicemia_002.Controllers
     public class GlicemiasController : Controller
     {
         private readonly GlicemiaContext _context;
-        public GlicemiasController(GlicemiaContext context)
+        private readonly IMapper _mapper;
+
+        public GlicemiasController(GlicemiaContext context, IMapper mapper)
         {
             _context = context;
-        }
-
-        public IActionResult Index()
-        {
-            return View();
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public IActionResult NovaGlicemia()
+        public IActionResult ListagemGlicemias()
+        {
+            List<GlicemiaViewModel> listaGlicemiasVM = new();
+            //List<Glicemia> listaFiltrada = AplicarFiltroGlicemia(_context.GLICEMIAS.ToList(), condicao);
+            foreach (Glicemia? g in _context.GLICEMIAS.ToList())
+            {
+                GlicemiaViewModel gVM = _mapper.Map<GlicemiaViewModel>(g);
+                listaGlicemiasVM.Add(gVM);
+            }
+            return View(listaGlicemiasVM);
+        }
+
+        [HttpGet]
+        public IActionResult CadastraGlicemia()
         {
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> NovaGlicemia(GlicemiaViewModel glicemia)
+        public async Task<IActionResult> CadastraGlicemia(GlicemiaViewModel gVM)
         {
             if (ModelState.IsValid)
             {
-                await _context.AddAsync(glicemia);
+                Glicemia g = _mapper.Map<Glicemia>(gVM);
+                await _context.AddAsync(g);
+                // gVM.EhErro = "N";
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(NovaGlicemia));
+                ViewBag.MessageFormularioOK = "Formulário criado com sucesso!";
             }
             else
             {
                 ViewBag.MessageFormularioErro = "Foram encontrados erros no formulário. Favor verificar os campos preenchidos.";
-                viewModel.EhErro = "Sim";
-                viewModel.MensagemRetorno = "";
-                return View(glicemia);
+                // gVM.EhErro = "S";
+                // gVM.MensagemRetorno = "";
             }
-
+            return View(gVM);
         }
 
     }

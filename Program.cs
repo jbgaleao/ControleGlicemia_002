@@ -1,4 +1,5 @@
 using ControleGlicemia_002.Context;
+using ControleGlicemia_002.Mappers;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -9,6 +10,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<GlicemiaContext>(opt => opt
     .UseSqlServer(builder.Configuration
     .GetConnectionString("GlicemiaConn")));
+builder.Services.AddAutoMapper(typeof(GlicemiaMapper));
 
 var app = builder.Build();
 
@@ -25,6 +27,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Glicemias}/{action=NovaGlicemia}/{id?}");
+    pattern: "{controller=Glicemias}/{action=ListagemGlicemias}/{id?}");
 
 app.Run();

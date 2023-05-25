@@ -11,11 +11,13 @@ namespace ControleGlicemia_002.Context
 
         }
 
-        public DbSet<GlicemiaViewModel> GLICEMIAS { get; set; }
+        public DbSet<Glicemia> GLICEMIAS { get; set; }
 
-        internal Task SaveChangesAsync(GlicemiaViewModel glicemia)
+        internal Task SaveChangesAsync(Glicemia glicemia)
         {
             throw new NotImplementedException();
         }
+
+        public DbSet<ControleGlicemia_002.ViewModel.GlicemiaViewModel>? GlicemiaViewModel { get; set; }
     }
 }

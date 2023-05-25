@@ -5,6 +5,7 @@ namespace ControleGlicemia_002.ViewModel
 {
     public class GlicemiaViewModel
     {
+        [Key]
         public int GlicemiaID { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório")]
@@ -47,5 +48,10 @@ namespace ControleGlicemia_002.ViewModel
         [DisplayName("Observações")]
         [DataType(DataType.Text)]
         public string? Observacao { get; set; }
+
+        //-------------------------------------------------------------------------------
+
+        //public string? EhErro { get; set; }
+        //public string? MensagemRetorno { get; set; }
     }
 }
