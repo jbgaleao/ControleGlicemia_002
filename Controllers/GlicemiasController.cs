@@ -20,7 +20,7 @@ namespace ControleGlicemia_002.Controllers
         }
 
         [HttpGet]
-        public IActionResult ListagemGlicemias()
+        public IActionResult Index()
         {
             List<GlicemiaViewModel> listaGlicemiasVM = new();
             //List<Glicemia> listaFiltrada = AplicarFiltroGlicemia(_context.GLICEMIAS.ToList(), condicao);
@@ -33,14 +33,14 @@ namespace ControleGlicemia_002.Controllers
         }
 
         [HttpGet]
-        public IActionResult CadastraGlicemia()
+        public IActionResult Cadastro()
         {
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CadastraGlicemia(GlicemiaViewModel gVM)
+        public async Task<IActionResult> Cadastro(GlicemiaViewModel gVM)
         {
             if (ModelState.IsValid)
             {

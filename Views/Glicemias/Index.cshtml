@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<ControleGlicemia_002.ViewModel.GlicemiaViewModel>
 
 @{
-    ViewData["Title"] = "ListagemGlicemias";
+    ViewData["Title"] = "Index";
 }
 
 <h3 class="jumbotron">Listagem de Glicemias Cadastradas</h3>
 
 @using (Html.BeginForm())
 {
-    <div class="accordion" id="accordionExample">
+    <div class="accordion bg bg-light" id="accordionExample">
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingOne">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -79,7 +79,16 @@
                             <div class="col-md-1">
                             </div>
                             <div class="col-md-2">
-                                <a class="btn btn-primary btn-sm" href="/Glicemias/CadastraGlicemia" style="padding-top: 4px; margin-top: 30px;">Aplicar Filtro...</a>
+                                <a  class="btn btn-primary btn-sm"
+                                   asp-action="Index" 
+                                   asp-route-_gMedida="199"
+                                   asp-route-_dtMedicao="25/05/2023"
+                                   asp-route-_dtAplicacao="28/05/2023"
+
+                              
+                                   style="padding-top: 4px; margin-top: 30px;">
+                                    Aplicar Filtro...
+                                </a>
                             </div>
                         </div>
 
@@ -95,7 +104,7 @@
 
 <br />
 <div class="form-group p-1">
-    <a class="btn btn-primary btn-sm" asp-action="CadastraGlicemia">Cadastra Glicemia</a>
+    <a class="btn btn-primary btn-sm" asp-action="Cadastro">Cadastra Glicemia</a>
 </div>
 <hr />
 

@@ -27,6 +27,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Glicemias}/{action=ListagemGlicemias}/{id?}");
+    pattern: "{controller=Glicemias}/{action=Index}/{id?}");
 
 app.Run();
