@@ -5,6 +5,7 @@ using ControleGlicemia_002.Models;
 using ControleGlicemia_002.ViewModel;
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ControleGlicemia_002.Controllers
 {
@@ -59,5 +60,104 @@ namespace ControleGlicemia_002.Controllers
             return View(gVM);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Editar(int? id)
+        {
+            if (id == null || _context.GLICEMIAS == null)
+            {
+                return NotFound();
+            }
+
+            Glicemia? g = await _context.GLICEMIAS.FindAsync(id);
+            if (g == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                GlicemiaViewModel gVM = _mapper.Map<GlicemiaViewModel>(g);
+                return View(gVM);
+            }
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Editar(int id, [Bind("GlicemiaID,GlicemiaMedida,DataMedicao,HoraMedicao,DataAplicacao,HoraAplicacao,DoseRegular,DoseAjuste,Observacao")] GlicemiaViewModel gVM)
+        {
+            if (id != gVM.GlicemiaID)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    Glicemia g = _mapper.Map<Glicemia>(gVM);
+                    _context.Update(g);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!Glicemia(gVM.GlicemiaID))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(gVM);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Deletar(int? id)
+        {
+            if (id == null || _context.GLICEMIAS == null)
+            {
+                return NotFound();
+            }
+
+            Glicemia? g = await _context.GLICEMIAS.FirstOrDefaultAsync(m => m.GlicemiaID == id);
+            if (g == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                GlicemiaViewModel gVM = _mapper.Map<GlicemiaViewModel>(g);
+                return View(gVM);
+            }
+
+
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int GlicemiaID)
+        {
+            if (_context.GLICEMIAS == null)
+            {
+                return Problem("Entity set 'GlicemiaContext.Glicemia'  is null.");
+            }
+            Glicemia? g = await _context.GLICEMIAS.FindAsync(GlicemiaID);
+            if (g != null)
+            {
+                _context.GLICEMIAS.Remove(g);
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool Glicemia(int id)
+        {
+            return (_context.GLICEMIAS?.Any(e => e.GlicemiaID == id)).GetValueOrDefault();
+        }
     }
+
 }

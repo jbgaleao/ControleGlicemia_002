@@ -1,13 +1,13 @@
 ﻿@model ControleGlicemia_002.ViewModel.GlicemiaViewModel
 @{
-    ViewData["Title"] = "NovaGlicemia";
+    ViewData["Title"] = "Editar Glicemia";
 }
 
-<h3 class="jumbotron">Novo Registro de Glicemia</h3>
+<h3 class="jumbotron">Editando Registro de Glicemia</h3>
 <hr />
 <div class="row">
     <div class="col-md">
-        <form asp-action="Cadastro">
+        <form asp-action="Editar">
 
             @if (!string.IsNullOrEmpty(ViewBag.MessageFormularioOk))
             {
@@ -113,6 +113,7 @@
             <br />
 
             <div class="form-group p-1">
+                <input type="hidden" asp-for="GlicemiaID" />
                 <input type="submit" value="Salvar" class="btn btn-success btn-sm" />&emsp;
                 <a asp-action="Index" class="btn btn-link btn-sm">Voltar</a>
             </div>

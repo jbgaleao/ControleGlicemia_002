@@ -20,6 +20,11 @@ body {
 .jumbotron {
     padding: 4rem 2rem;
     margin-bottom: 2rem;
-    background-color: lightsteelblue;
+    background-color: #b0bfde;
     border-radius: .3rem;
 }
+
+.card-header{
+    background-color: lightsteelblue;
+}
+

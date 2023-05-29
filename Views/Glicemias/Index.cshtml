@@ -6,109 +6,12 @@
 
 <h3 class="jumbotron">Listagem de Glicemias Cadastradas</h3>
 
-@using (Html.BeginForm())
-{
-    <div class="accordion bg bg-light" id="accordionExample">
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    Aplicar Filtros...
-                </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-
-                    <div class="container col-md-12">
-                        <div class="row">
-
-                            @*  GLICEMIA MEDIDA *@
-                            <div class="col-md-1">
-                                <label class="control-label col-form-label-sm fw-bold">&emsp;</label>
-                                <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                    <option selected value="0"></option>
-                                    <option value="1">&lt</option>
-                                    <option value="2">&le;</option>
-                                    <option value="3">=</option>
-                                    <option value="4">&ne;</option>
-                                    <option value="5">&gt;</option>
-                                    <option value="6">&ge;</option>
-                                </select>
-                            </div>
-                            <div class="col-md-2">
-                                <label class="control-label col-form-label-sm fw-bold">Glicemia Medida</label>
-                                <input class="form-control form-control-sm" type="number" min="40" max="500" />
-                            </div>
-
-                            @*  DATA DE MEDIÇÃO *@
-                            <div class="col-md-1">
-                                <label class="control-label col-form-label-sm fw-bold">&emsp;</label>
-                                <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                    <option selected value="0"></option>
-                                    <option value="1">&lt</option>
-                                    <option value="2">&le;</option>
-                                    <option value="3">=</option>
-                                    <option value="4">&ne;</option>
-                                    <option value="5">&gt;</option>
-                                    <option value="6">&ge;</option>
-                                </select>
-                            </div>
-                            <div class="col-md-2">
-                                <label class="control-label col-form-label-sm fw-bold">Data da Medição</label>
-                                <input class="form-control form-control-sm" type="date" min="40" max="500" />
-                            </div>
-
-                            @*  DATA DE APLICAÇÃO *@
-                            <div class="col-md-1">
-                                <label class="control-label col-form-label-sm fw-bold">&emsp;</label>
-                                <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                    <option selected value="0"></option>
-                                    <option value="1">&lt</option>
-                                    <option value="2">&le;</option>
-                                    <option value="3">=</option>
-                                    <option value="4">&ne;</option>
-                                    <option value="5">&gt;</option>
-                                    <option value="6">&ge;</option>
-                                </select>
-                            </div>
-                            <div class="col-md-2">
-                                <label class="control-label col-form-label-sm fw-bold">Data da Aplicação</label>
-                                <input class="form-control form-control-sm" type="date" min="40" max="500" />
-                            </div>
-
-                            @*  BOTÃO APLICAR FILTRO    *@
-                            <div class="col-md-1">
-                            </div>
-                            <div class="col-md-2">
-                                <a  class="btn btn-primary btn-sm"
-                                   asp-action="Index" 
-                                   asp-route-_gMedida="199"
-                                   asp-route-_dtMedicao="25/05/2023"
-                                   asp-route-_dtAplicacao="28/05/2023"
-
-                              
-                                   style="padding-top: 4px; margin-top: 30px;">
-                                    Aplicar Filtro...
-                                </a>
-                            </div>
-                        </div>
-
-                        <br>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-}
-
-
-
-<br />
 <div class="form-group p-1">
-    <a class="btn btn-primary btn-sm" asp-action="Cadastro">Cadastra Glicemia</a>
+    <a class="btn btn-primary btn-sm" asp-action="Cadastro">Cadastra Nova Glicemia</a>
 </div>
 <hr />
-
-<table class="table table-striped table-hover fs-6">
+<br />
+<table id="tabela" class="table table-striped table-hover fs-6">
     <thead>
         <tr>
             <th>
@@ -169,13 +72,13 @@
                 <td>
 
                     <div class="btn-group btn-group-sg" role="group" aria-label="Large button group">
-                        <a class="btn btn-secondary" asp-action="Edit" asp-route-id="@item.GlicemiaID">
+                        <a class="btn btn-secondary" asp-action="Editar" asp-route-id="@item.GlicemiaID">
                             <i class="bi bi-pencil-square"></i>
                         </a>
-                        <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.GlicemiaID">
+                        <a class="btn btn-primary" asp-action="Detalhes" asp-route-id="@item.GlicemiaID">
                             <i class="bi bi-list-columns-reverse"></i>
                         </a>
-                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.GlicemiaID">
+                        <a class="btn btn-danger" asp-action="Deletar" asp-route-id="@item.GlicemiaID">
                             <i class="bi bi-trash"></i>
                         </a>
                     </div>
@@ -184,3 +87,26 @@
         }
     </tbody>
 </table>
+
+@section Scripts {
+    <script>
+        $(document).ready(
+            function () {
+                $('#tabela').DataTable();
+            }
+        );
+    </script>
+}
+
+        @*$(document).ready(function () {
+        var table = $('#tabela').DataTable( {
+        lengthChange: false,
+        select: true,
+        searchBuilder: true,
+        buttons: ['csv', 'colvis']
+        } );
+
+        table.buttons().container().appendTo('#tabela_wrapper .col-md-6:eq(0)');
+        table.searchBuilder.container().prependTo(table.table().container());
+        } );*@
+
