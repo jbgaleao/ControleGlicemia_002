@@ -61,6 +61,26 @@ namespace ControleGlicemia_002.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> Detalhes(int? id)
+        {
+            if (id == null || _context.GLICEMIAS == null)
+            {
+                return NotFound();
+            }
+
+            Glicemia? g = await _context.GLICEMIAS.FindAsync(id);
+            if (g == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                GlicemiaViewModel gVM = _mapper.Map<GlicemiaViewModel>(g);
+                return View(gVM);
+            }
+        }
+
+        [HttpGet]
         public async Task<IActionResult> Editar(int? id)
         {
             if (id == null || _context.GLICEMIAS == null)
@@ -78,12 +98,11 @@ namespace ControleGlicemia_002.Controllers
                 GlicemiaViewModel gVM = _mapper.Map<GlicemiaViewModel>(g);
                 return View(gVM);
             }
-
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Editar(int id, [Bind("GlicemiaID,GlicemiaMedida,DataMedicao,HoraMedicao,DataAplicacao,HoraAplicacao,DoseRegular,DoseAjuste,Observacao")] GlicemiaViewModel gVM)
+        public async Task<IActionResult> Editar(int id, [Bind("id,GlicemiaMedida,DataMedicao,HoraMedicao,DataAplicacao,HoraAplicacao,DoseRegular,DoseAjuste,Observacao")] GlicemiaViewModel gVM)
         {
             if (id != gVM.GlicemiaID)
             {
